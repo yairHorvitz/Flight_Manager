@@ -86,5 +86,36 @@ public class Airline
         }
         return false;
     }
+    public boolean registerWorker(Worker w, int flightId)
+    {
+        for (Flight flight : flights) {
+            if (flight.getIdNumFlight() == flightId) {
+                flight.registerWorker(w);
+                return true;
+            }
+        }
+        for (Airline airline : subairlines) {
+            if (airline.registerWorker(w,flightId)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean unregisterWorker(Worker w, int flightId)
+    {
+        for (Flight flight : flights) {
+            if (flight.getIdNumFlight() == flightId) {
+                flight.unregisterWorker(w);
+                return true;
+            }
+        }
+        for (Airline airline : subairlines) {
+            if (airline.unregisterWorker(w,flightId)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

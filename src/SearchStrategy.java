@@ -7,7 +7,15 @@ public class SearchStrategy {
     {
         if (type.equals("TakeOffTime")) {
             typeOfSearch = new TakeOffTimeSearch();
-        } //else if (type.equals())//הוספה של פאקטורי
+        }
+
+        else if (type.equals("TimeFlightOnMinutes")){
+        typeOfSearch = new TimeFlightOnMinutesSearch();
+        }
+
+        else if (type.equals("Cost")) {
+            typeOfSearch = new CostSearch();
+        }
     }
     public List<Flight> search(Object condition, List<Airline> airlines ) {
         if(typeOfSearch==null){

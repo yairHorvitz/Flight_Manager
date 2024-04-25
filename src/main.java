@@ -6,10 +6,12 @@ public class main {
     public static void main(String[] args) {
         FlightsSystem flightsSystem = FlightsSystem.getInstance();
 
+
         Airline a1 = new Airline("a1");
         Airline a2 = new Airline("a2");
         Airline a3 = new Airline("a3");
         Airline a4 = new Airline("a4");
+
         a1.addSubairline(a2);
         a2.addSubairline(a3);
         a1.addSubairline(a4);
@@ -18,6 +20,7 @@ public class main {
         Airline b2 = new Airline("b2");
         Airline b3 = new Airline("b3");
         Airline b4 = new Airline("b4");
+
         b1.addSubairline(b3);
         b3.addSubairline(b2);
         b3.addSubairline(b4);
@@ -36,8 +39,10 @@ public class main {
 
         Passenger p1 = new Passenger(1,"bob",3,"male");
         Passenger p2 = new Passenger(2,"alice",3,"female");
-
+        Passenger p3= new Passenger(314990938,"avner kalfa",27,"male");
+        Passenger p4= new Passenger(314990938,"adi passover",19,"male");
         List<Flight> list = flightsSystem.search("TakeOffTime",d);
+
         System.out.println(list.get(0).getIdNumFlight());
         System.out.println(list.get(1).getIdNumFlight());
 
@@ -50,9 +55,15 @@ public class main {
         flightsSystem.unregisterPassenger(p1,1);
         f1.registerObserver(p1);
         f1.registerObserver(p2);
+        f1.registerPassenger(p3);
         f1.setCost(50);
+        f1.printPersonOnFlight();
+        System.out.println(f1.getDestinationAirport());
         flightsSystem.registerPassenger(p2,1);
         flightsSystem.printRevenues();
+        flightsSystem.search("TimeFlightOnMinutes",100);
+
+
     }
 
 }

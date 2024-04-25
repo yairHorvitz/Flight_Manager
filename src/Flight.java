@@ -109,19 +109,28 @@ public class Flight implements Subject{
 
     }
 //add notifyObservers for all the setters;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    public void setTimeFlightOnMinutes(int timeFlightOnMinutes) {
-        this.timeFlightOnMinutes = timeFlightOnMinutes;
+    public void setTimeFlightOnMinutes(int newTimeFlightOnMinutes) {
+        notifyObservers(messageFactory.createMessage("changeTime",timeFlightOnMinutes,newTimeFlightOnMinutes));
+        this.timeFlightOnMinutes = newTimeFlightOnMinutes;
     }
 
-    public void setTakeOffTime(Date takeOffTime) {
-        this.takeOffTime = takeOffTime;
+    public void setTakeOffTime(Date newTakeOffTime) {
+        notifyObservers(messageFactory.createMessage("changeTakeOfTime",takeOffTime,newTakeOffTime));
+        this.takeOffTime = newTakeOffTime;
     }
 
-    public void setCost (int newCost)
+    public void setCost (int newCost)// that only passenger get the update price by passenger class / do diffrent list.
     {
         notifyObservers(messageFactory.createMessage("costFlight",cost,newCost));
       this.cost = newCost;
 
+    }
+    public void printPersonOnFlight() {
+        System.out.println("The people on the flight are:");
+        System.out.println(personOnFlight);
+        for (Person person : personOnFlight) {
+            System.out.println(person.getName());
+        }
     }
 
 }
